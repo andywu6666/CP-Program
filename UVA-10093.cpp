@@ -5,28 +5,41 @@ using namespace std;
 
 int main(){
     
-    string n;
-    int o = 0;
-    switch (cin >> n){
-        case n < 11:
-            o = n - '0' + 1; break;
-        
-        case n < 38:
-            o = n - 'A' + 10; break;
+    string s;
+    int mx, sum , o;
+    while (cin >> s){
+        mx = 1;
+        sum = 0;
+        int i;
+        for ( i = 0; i < s.size() ; i++){
+            if (s[i] >= '0' && s[i] <= 9)
+            o = s[i] - '0'; 
+            else if (s[i] >= 'A' && s[i] <= 'Z')
+            o = s[i] - 'A' + 10; 
+            else if (s[i] >= 'a' && s[i] <= 'z')
+            o = s[i] - 'a' + 36; 
+            else
+            continue;
+        }
 
-        case n < 63:
-            o = n - 'a' + 37; break;
+        if (mx < o)
+        mx = o;
 
-        default:
-            cout << "such number is impossible!" << endl; break;
+        sum += o;
 
+        for (int i = mx ; i < 62 ; i++){
+            if (!(i % sum)){
+                cout << i + 1 << endl;
+            break;
+            }
+
+        }
+        if (i == 62)
+            cout << "such number is impossible!" << endl;
+
+           
+        cin.ignore();
     }
-
-    cout << o << endl;
-    //cout << base.size() << endl; //for debug
-
-
-
 
 
     return 0;
