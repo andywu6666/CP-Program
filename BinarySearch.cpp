@@ -1,17 +1,18 @@
 //Effect: O(n) - > O(log n) by binary search
 #include <iostream>
-#include <vector>
 using namespace std;
 
 
-int binarySearch(vector<int> arr[], int target)
+int binarySearch(int arr[], int target, int arraySize)
 {
     int low, mid, high, value;
-    low = arr[0];
-    high = arr[arr.size() - 1];
-    if (low <= high)
+    low = 0;
+    high = arraySize - 1;
+    while (low <= high)
     {
-        mid = low + (low + high) / 2;
+        mid = low + (high - low) / 2;
+        //for counting executing
+        cout << "Now Checking: " << mid << endl;
         value = arr[mid];
     
         if (value > target)
@@ -38,21 +39,21 @@ int binarySearch(vector<int> arr[], int target)
 
 
 int main(){
-    vector<int> arr[100];
-    int target, index;
+    int arr[100], target,index;
+    int arraySize = sizeof(arr) / sizeof(arr[0]);
     cout << "The Number you want to Search: \n";
     cin >> target;
 
 
-    for (int i = 0; i < arr.size()  ; i++)
+    for (int i = 0; i < arraySize ; i++)
     {
-        arr[i]  = i;
+        arr[i]  = i * 2;
     }
 
-    index = binarySearch(arr, target);
+    index = binarySearch(arr, target, arraySize);
     if (index == -1)
     cout << "Number not found!\n";
-
+    else
     cout << "The number is in array[" << index << "]\n";
 
 
