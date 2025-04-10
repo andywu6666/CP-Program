@@ -26,12 +26,10 @@ int main()
     int n, t; // there are n machines , the goal is t products
     cin >> n >> t;
 
-    vector<int> arr; // each machines' making time
+    vector<int> arr(n); //storing each machines' making time
     for (int i = 0; i < n; i++)
     {
-        int temp = 0;
-        cin >> temp;
-        arr.push_back(temp); 
+        cin >> arr[i]; //need to allocate sufficient array size first
     }
     sort(arr.begin(),arr.end());
 
