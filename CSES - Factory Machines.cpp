@@ -3,6 +3,24 @@
 #include <algorithm>
 using namespace std;
 
+bool checkIsOver (long long time, vector<int> & machines,long long t)
+{
+    long long total = 0;
+    for (int k : machines)
+    {
+        total += time / k;
+
+    }
+
+    if (total >= t)
+     return true;
+
+    return false;
+}
+
+
+
+
 int main()
 {
     int n, t; // there are n machines , the goal is t products
@@ -17,35 +35,30 @@ int main()
     }
     sort(arr.begin(),arr.end());
 
-    int time = 1;
-    int makingNum = 0;
-    while (makingNum < t)
-    {
-        int low, high, mid, value;
-        low = 0;
-        high = arr.size() - 1;
-        mid = low + (high - low) / 2;
-        value = arr[mid];
+    long long time = 1;
+    long long low, high, mid, ans;
 
+    while (low <= high)
+    {
+        
+        low = 1;
+        high = (long long)arr.front() * t;
+        mid = low + (high - low) / 2;
        
         
-            if (value > time)
+            if (checkIsOver(mid, arr, t) )
             {
                 high = mid - 1;
+                ans = mid;
             }
-            else if (value < time)
-            {
                 low = mid + 1;
-            }
-            else
-            {
-                makingNum++;
-            }
+
+
         
 
-        time++;
+
     }
 
-    cout << time << endl;
+    cout << ans << endl;
     return 0;
 }
