@@ -9,11 +9,11 @@ bool checkIsOver (long long time, vector<int> & machines,long long t)
     for (int k : machines)
     {
         total += time / k;
-
+        if (total >= t)
+        return true;
     }
 
-    if (total >= t)
-     return true;
+
 
     return false;
 }
@@ -37,13 +37,14 @@ int main()
 
     long long time = 1;
     long long low, high, mid, ans;
+    low = 1;
+    high = (long long)arr.front() * t;
+    ans = high;
 
     while (low <= high)
     {
-        
-        low = 1;
-        high = (long long)arr.front() * t;
         mid = low + (high - low) / 2;
+        
        
         
             if (checkIsOver(mid, arr, t) )
@@ -51,8 +52,9 @@ int main()
                 high = mid - 1;
                 ans = mid;
             }
+            else{
                 low = mid + 1;
-
+            }
 
         
 
