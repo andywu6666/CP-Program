@@ -10,23 +10,23 @@ int main()
     for (int Case = 0; Case < N; Case++)
     {
     cin >> A >> B >> C >> D;
-    
 
-    int x = A > B ? A - B : B - A; 
-    int y = C > D ? C - D : D - C;
-
-    for(int i = 0; i < x; i++){
-        for(int j = 0; j < y; j++){
+    for(int i = A; i < B; i++){
+        for(int j = C; j < D; j++){
             if (is_covered[i][j] == 1){ //already covered
             continue;
             }
     
             is_covered[i][j] = 1;
-            count++;
         }
     }
 
     }
+    for (int a = 0; a < 101; a++)
+        for (int b = 0; b < 101; b++)
+            if (is_covered[a][b])
+                count++;
+
         cout << count << endl;
 
     return 0;
