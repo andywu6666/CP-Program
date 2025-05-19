@@ -4,8 +4,8 @@ using namespace std;
 
 int main()
 {
-    vector<vector<int> > is_covered;
-    int N, A, B, C, D;
+    vector<vector<int> > is_covered(101, vector<int>(101,0) );
+    int N, A, B, C, D, count;
     cin >> N;
     for (int Case = 0; Case < N; Case++)
     {
@@ -17,17 +17,17 @@ int main()
 
     for(int i = 0; i < x; i++){
         for(int j = 0; j < y; j++){
-            is_covered[i][j].push_back(1);
-
             if (is_covered[i][j] == 1){ //already covered
             continue;
             }
     
+            is_covered[i][j] = 1;
+            count++;
         }
     }
 
     }
-        cout << is_covered.size() << endl;
+        cout << count << endl;
 
     return 0;
 }
