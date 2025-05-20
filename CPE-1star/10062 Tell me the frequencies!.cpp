@@ -37,7 +37,7 @@ int main()
             const pair<int, int> &p =  setNum[j]; 
         cout << p.first << " " << p.second << endl;
         }
-        cout << endl;
+
 
         setNum.clear();
         array.clear();
