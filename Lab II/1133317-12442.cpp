@@ -3,55 +3,68 @@
 
 using namespace std;
 
+vector<int> sent;
+vector<bool> sum, check;
+int times = 0;
+
+void dfs(int num)
+{
+	times++;
+
+	check[num] = true;
+	sum[num] = check[num];
+	int nextMan = sent[num];
+
+	if (!check[nextMan])
+	{
+		dfs(nextMan);
+	}
+}
+
 int main()
 {
 	int T = 0;
 	cin >> T;
 
-	for (int g = 0; g < T; g++)
+	for (int g = 1; g <= T; g++)
 	{
-		int numN = 0;
-		int min_req = 0;
-		cin >> numN;
-		vector<bool> oneTonine(numN + 1, false);
-		for (int i = 0; i < numN; i++)
+		int N;
+		cin >> N;
+		sum.assign(N + 1, false);
+		sent.assign(N + 1, -1);
+
+		for (int h = 0; h < N; h++)
 		{
-			int a, b;
-			cin >> a >> b;
-			vector<int> temp;
-			temp.push_back(a);
-			temp.push_back(b);
-			if (temp.size() > 3)
+			int u, v;
+			cin >> u >> v;
+			sent[u] = v;
+		}
+
+		int ftimes = 0, fnum = sent[0];
+
+		for (int j = 1; j <= N; j++)
+		{
+			if (!sum[j])
 			{
-				if (temp[i] == temp[i - 1] || temp[i] == temp[i - 2])
-					oneTonine[a - 1] = false;
-				oneTonine[b - 1] = false;
-				
-			}
-			else {
-				oneTonine[a - 1] = true;
-				oneTonine[b - 1] = true;
-			}
-		}
-		for (int j = 0; j < oneTonine.size(); j++)
-		{
-			if (oneTonine[j] == true ) {
-				min_req = j + 1;
-				break;
+				check.assign(N + 1, false);
+				check[j] = true;
+				times = 0;
+
+				dfs(sent[j]);
+
+				if (times > ftimes)
+				{
+					ftimes = times;
+					fnum = j;
+				}
+				else if (times == ftimes)
+					if (j < fnum)
+						fnum = j;
 			}
 		}
 
-		
-		cout << "Case " << g + 1 << ": " << min_req << endl;
-
-		oneTonine.clear();
+		cout << "Case " << g << ": " << fnum << endl;
 	}
-
-
-
-
-
-
 
 	return 0;
 }
