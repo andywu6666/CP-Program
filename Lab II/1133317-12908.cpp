@@ -1,35 +1,29 @@
+//Accepted
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
+	//precauculating
+		vector <int> table;
+		for (int i = 0 ; i < 14145; i++) // numS < 10^8
+		{
+			table.push_back( (i * (i + 1)) / 2);
+		}
+
 	int numS = 0;
 	while (cin >> numS && numS != 0)
 	{
-		int forget = 0, total = 0;
-		vector<double> vec{ 0 };
-		for (int i = 1; i <= numS; i++)
-		{
-			vec.push_back((i * (i + 1)) / 2);
-
-		}
-
-		//for (int t = 0; t < vec.size(); t++) cout << vec[t] << " " << endl; // for debug
-		if (numS == 1)
-		{
-			cout << 2 << " " << 2 << endl;
-		}
-		else if (numS == 2)
-		{
-			cout << 1 << " " << 2 << endl;
-		}
-		else
-		{
-			forget = vec[numS - 1] - numS;
-			total = vec[forget];
-			cout << forget << " " << total << endl;;
-		}
+		// searching
+		int ans1, ans2;
+		vector<int>::iterator tableIt;
+		tableIt = upper_bound(table.begin(), table.end(), numS);
+		ans1 = *tableIt - numS; //forgotten page
+		ans2 = tableIt - table.begin(); //total pages
+		cout << ans1 << " " << ans2 << endl;
+	
 	}
 
 
