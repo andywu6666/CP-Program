@@ -32,9 +32,11 @@ int main()
 		}
 		
 		if (flag) {
-			for (int i = 0; i < arr.size(); i++)
-				cout << arr[i] << " ";
-
+			for (int i = 0; i < arr.size(); i++){
+				cout << arr[i];
+				if (i < arr.size() - 1) //the very last number should not print a space after it
+				cout << " ";
+			}
 			cout << endl;
 		}
 		else
