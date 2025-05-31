@@ -6,27 +6,28 @@ int main()
 {
     // two unsigned less than 10 digits -> using unsigned long long
     unsigned long long a , b;
-    while (cin >> a >> b && a && b)
+    while (cin >> a >> b && (a != 0 || b != 0))
     {
-        vector<int> sum;
-        while (a > 0 || b > 0)
+        int sum;
+        int carry = 0, carryCount = 0;
+        while (a > 0 || b > 0 || carry > 0)
         {
-            sum.push_back( (a % 10) + (b % 10) );
+            sum = (a % 10) + (b % 10) + carry ;
              a /= 10;
             b /= 10;
-        }
-
-        int carry = 0;
-        for (int i = 0; i < sum.size(); i++)
-        {
-            if (sum[i] >= 10)
+        
+            if (sum >= 10)
             {
-                sum[i+1] += 1;
-                sum[i] -= 10;
-                carry++;
+                carry = 1;
+                carryCount++;
             }
+            else
+            {
+                carry = 0;
+            }
+       
         }
-        switch(carry)
+        switch(carryCount)
         {
             case 0:
             cout << "No carry operation." << endl;
@@ -35,9 +36,10 @@ int main()
             cout << "1 carry operation." << endl;
             break;
             default:
-            cout << carry << " carry operations." << endl;
+            cout << carryCount << " carry operations." << endl;
             break;
         }
+        
     }
 
     return 0;
