@@ -1,3 +1,4 @@
+//Accepted (can be more efficient)
 #include <iostream>
 #include <vector>
 using namespace std;
