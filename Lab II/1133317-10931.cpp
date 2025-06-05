@@ -1,34 +1,33 @@
 #include <iostream>
-#include <cmath>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
-	int i = 0, n = 0;
-	int B = 0;
+	int i = 0, P = 0;
 	while (cin >> i) {
 		if (i == 0)
 			break;
+	
+	int temp = i;
+	string B;
+	while (temp > 0){
+	
+	if (temp % 2 == 1)
+		P++;
+		
+	B += (temp % 2 == 1 ? "1" : "0");
+	temp /= 2;
 	}
-	cin >> i;
-	int left = i;
-	int digits = 0;
-// n = 2 ^ n
-	while (true) {
-		if (pow(2, n) <= i)
-			n++;
-		else
-			break;
-	}
-	for (; n >= 0; n--) {
-		if (left >= pow(2, n)) {
-			left -= pow(2, n);
-			B += pow(10, n);
-			digits++;
-		}
+	reverse(B.begin() , B.end() );
+		cout << "The parity of " << B << " is " << P << " (mod 2)." << endl;
+
+	P = 0;
 	}
 
 
-	cout << "The parity of " << B << " is " << digits << " (mod 2).";
+
+
 	return 0;
 }
