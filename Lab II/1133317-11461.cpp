@@ -1,37 +1,25 @@
+//Accepted
 #include <iostream>
 #include <cmath>
-#include <algorithm>
 using namespace std;
 
 int main()
 {
-	while (true)
+	int a, b;
+	while (cin >> a >> b && !(a == 0 && b == 0))
 	{
 		int count = 0;
-		int a, b;
-		cin >> a >> b;
-		if (a == 0 && b == 0)
-			break;
+		for (int i = a; i <=b ; i++){
 		
-		if (a > 1) {
-			for (int i = sqrt(a) + 1; i <= sqrt(b) ; i++)
-			{
-				count++;
-			}
+		int root = static_cast<int>(sqrt(i));
+		if (root * root == i)
+			count++;
+	
 		}
-		else {
-			for (int i = sqrt(a); i <= sqrt(b) ; i++)
-			{
-				if (sqrt(i) * sqrt(i) == i)
-				count++;
-			}
-		}
-
 		cout << count << endl;
-
 	}
-
-
-
+	
+	
+	
 	return 0;
 }
