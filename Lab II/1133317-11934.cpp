@@ -1,34 +1,22 @@
+//Accepted
 #include <iostream>
-
 using namespace std;
 
-int main() {
-	int a, b, c, d, l;
-
-
-
-	int value = 0;
-	int diviableNum = 0;
-
-	while (cin >> a >> b >> c >> d >> l ) {
-		if (a == 0 && b == 0 && c == 0 && d == 0 && l == 0)
-			break;
-		int tempL = 0;
-		value = 0;
-		diviableNum = 0;
-
-		for (int i = 0; i <= l; i++) {
-			value = a * (tempL * tempL) + b * (tempL)+c;
-
-			if (value % d == 0)
-				diviableNum++;
-			tempL++;
+int main()
+{
+	int a, b, c, d, L;
+	while (cin >> a >> b >> c >> d >> L && !(a == 0 && b == 0 && c == 0 && d==0 && L == 0))
+	{
+		int count = 0;
+		for (int i = 0; i <= L; i++)
+		{
+			if ((a * i * i + b * i + c) % d == 0)
+				count++;
 		}
-
-		cout << diviableNum << endl;
-
+		cout << count << endl;
 	}
-
-
+	
+	
+	
 	return 0;
 }
