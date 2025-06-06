@@ -1,41 +1,43 @@
+//Accepted
 #include <iostream>
-#include <string>
+#include <vector>
+
 using namespace std;
-
-int main() {
-	int son, mother; 
-	int sumInt, sumSmall;
-	string b;
-
-	cin >> son >> mother;
-	sumInt = son / mother;
-	int b0 = sumInt;
+vector<int> coefs;
+void solve(int son, int mother)
+{
+	while (mother != 0)
+	{
 	
-	sumSmall = son % mother;
-	int b1 = (mother / sumSmall);
+	coefs.push_back(son / mother);
+	int remainder = son % mother;
+	son = mother;
+	mother = remainder;
+	
 
+	
+}
 
-	cout << sumInt << " + " << sumSmall << '/' << mother << endl;
+	cout << "[" << coefs[0] << ";";
 
+	for (int i = 1; i < coefs.size(); i++)
+	{
 
-	while () {
-
-		int temp = mother;
-		mother = sumSmall;
-		sumSmall = temp;
-
-		sumSmall -= b1 * mother;
-
-		int b2;
-		if (mother / sumSmall < 1)
-			b2 = (mother / sumSmall);
-		else
-			b2 = 1;
+	cout << coefs[i];
+	if (i < coefs.size() - 1)
+		cout << ",";
+	else
+	cout << "]" << endl;
 
 	}
+coefs.clear();
+}
 
-
-	//cout << b0 << " " << b1 << b2;
-
+int main()
+{
+	int mother, son;
+	while (cin >> son >> mother)
+		solve(son, mother);
+	
 	return 0;
 }
