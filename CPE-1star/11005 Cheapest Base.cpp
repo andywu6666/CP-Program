@@ -9,7 +9,7 @@ int main()
 
     int t = 0;
     cin >> t;
-    for (int X = 1; X <=t; X++)
+    for (int X = 1; X <= t; X++)
     {
         if (X > 1)
             cout << endl;
@@ -26,7 +26,6 @@ int main()
 
         cout << "Case " << X << ":" << endl;
 
-
         for (int j = 0; j < seq; j++)
         {
             cin >> sequence[j];
@@ -38,9 +37,9 @@ int main()
             {
                 long long current_cost = 0;
                 int temp_N = sequence[j];
-                //adding handle for 0 case
+                // adding handle for 0 case
                 if (temp_N == 0)
-                current_cost = costs[0];
+                    current_cost = costs[0];
 
                 while (temp_N > 0)
                 {
@@ -58,7 +57,7 @@ int main()
                     cheapest_base.push_back(base);
                 }
             }
-            
+
             cout << "Cheapest base(s) for number " << sequence[j] << ": ";
             for (int c = 0; c < cheapest_base.size(); c++)
             {
