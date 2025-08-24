@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <map>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -8,46 +7,30 @@ using namespace std;
 int main()
 {
     string input, input2;
-    while (cin >> input)
+    while (getline(cin, input) && getline(cin, input2))
     {
-        cin >> input2;
 
         // create two strings' alphabet tables
-        map<char, int> alphaExist;
-        map<char, int> alphaExist2;
+        vector<int> alphaExist(26, 0);
+        vector<int> alphaExist2(26, 0);
         vector<char> ans;
         for (char c : input)
         {
-            alphaExist[c]++;
+            alphaExist[c - 'a']++;
         }
 
-         for (char g : input2)
+        for (char g : input2)
         {
-            alphaExist2[g]++;
+            alphaExist2[g - 'a']++;
         }
 
-        // compare two strings
-        for (char d : input2)
+        string result = "";
+        for (int i = 0; i < 26; i++)
         {
-            if (alphaExist[d] > 0)
-            {
-                int min_count = 0;
-                if (alphaExist[d] >= alphaExist2[d] && (alphaExist[d] > 1 || alphaExist2[d] > 1))
-                    min_count = alphaExist2[d];
-                else
-                    min_count = alphaExist[d];
-
-                for (int i = 0; i < min_count; i++)
-                ans.push_back(d);
-            }
+            int common_count = min(alphaExist[i], alphaExist2[i]);
+            result += string(common_count, 'a' + i);
         }
-        sort(ans.begin(), ans.end());
-        for (int j = 0; j < ans.size(); j++)
-            cout << ans[j];
-
-        cout << endl;
-
-        alphaExist.clear();
+        cout << result << endl;
     }
     return 0;
 }
