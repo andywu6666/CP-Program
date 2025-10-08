@@ -25,19 +25,7 @@ int main()
             P.push_back(temp);
         }
         sort(P.begin(), P.end());
-        int right = P.back();
-        int left = P.front();
-        int step = right - left, res = left - 1;
-        while (step > 0)
-        {
-            if (valid(P, res + step, right, val)) 
-                res += step;
-            else
-                step /= 2;
-        }
-        if (res + 1 < P.size() && P[res + 1] == val)
-            cout << res + 1 << endl;
-             cout << res + 1 << endl;
+        
               
 
 
