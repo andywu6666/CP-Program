@@ -1,15 +1,10 @@
+//Accepted
 #include <iostream>
 #include <vector>
-#include <algorithm>
+
 using namespace std;
 
-// Removed unused global array and variable
-int val;
 
-bool valid(const vector<int>& P, int idx, int right, int val)
-{
-    return idx <= right && P[idx] < val;
-}
 
 int main()
 {
@@ -17,15 +12,23 @@ int main()
     while (cin >> N >> H >> X)
     {
         vector <int> P;
-        val = H + X; // Assign a value to val
+
         
         for (int i = N; i > 0; i--)
         {
             int temp; cin >> temp;
             P.push_back(temp);
         }
-        sort(P.begin(), P.end());
-        
+
+
+        for (int i = 0; i < P.size(); i++)
+        {
+            if (P[i] + H >= X)
+            {
+                cout << i + 1 << endl;
+                break;
+            }
+        }
               
 
 
